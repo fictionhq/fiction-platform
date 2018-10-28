@@ -1,0 +1,16 @@
+{
+  "name": "fiction-platform",
+  "version": "0.0.1",
+  "description": "Fiction API",
+  "main": "index.js",
+  "repository": "https://github.com/fictionhq/fiction-platform",
+  "author": "rajikaimal <inbox.rajika@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "restify": "^7.2.1"
+  },
+  "scripts": {
+    "test": "ava"
+  }
+}
