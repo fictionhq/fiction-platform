@@ -1,0 +1,13 @@
+{
+  "name": "auth",
+  "version": "1.0.0",
+  "description": "Authentication service",
+  "main": "index.js",
+  "author": "rajikaimal",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "jsonwebtoken": "^8.4.0"
+  }
+}
