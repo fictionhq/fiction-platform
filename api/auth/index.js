@@ -10,13 +10,13 @@ const PORT = process.env.AUTH_PORT || 3001;
 // connect to mongoose
 const username = config.get("dbConfig.username");
 const password = config.get("dbConfig.password");
-mongoose(username, password);
+const mongooseInst = mongoose(username, password);
 
+const rootModel = require("./models/index")(mongooseInst);
 // JSON body parser
 app.use(bodyParser.json());
-app.use(expressValidator());
 // register routes
-app.use("/api/v1/auth", authRoutes(mongoose));
+app.use("/api/v1/auth", authRoutes(rootModel));
 
 app.listen(PORT, err => {
   if (err) throw new Error(err);
