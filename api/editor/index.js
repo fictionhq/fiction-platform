@@ -1,24 +1,18 @@
 const express = require("express");
 const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const server = require("http").createServer(app);
+const io = require("socket.io")(server);
+const mongoose = require("./mongoose");
 const PORT = process.env.AUTH_PORT || 3002;
+const socketIoController = require("./controllers/socket-io");
 
-io.on('connection', (socket) => {
-    console.log("onConnection");
+const mongooseInst = mongoose.getConnection();
+const rootModel = require("./models/index")(mongooseInst);
 
-    socket.on('text', (text) => {
-        console.log(`onText ${text}`);
-    });
+socketIoController.initSocketIo(io, rootModel);
 
-    socket.on('disconnect', () => {
-        console.log('onDisconnect');
-    });
-});
+server.listen(PORT, err => {
+  if (err) process.nextTick(err);
 
-server.listen(PORT, (err) => {
-    if (err) 
-        throw new Error(err);
-    
-    console.log(`Editor service running at ${PORT}`);
+  console.log(`Editor service running at ${PORT}`);
 });
