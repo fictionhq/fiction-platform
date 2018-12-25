@@ -8,9 +8,7 @@ const expressValidator = require("express-validator");
 const PORT = process.env.AUTH_PORT || 3001;
 
 // connect to mongoose
-const username = config.get("dbConfig.username");
-const password = config.get("dbConfig.password");
-const mongooseInst = mongoose(username, password);
+const mongooseInst = mongoose.getConnection();
 
 const rootModel = require("./models/index")(mongooseInst);
 // JSON body parser
